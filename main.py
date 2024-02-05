@@ -184,4 +184,3 @@ if __name__ == '__main__':
     number.update(voice_url=public_url + '/call')
     print(f'Waiting for calls on {number.phone_number}')
     uvicorn.run(app, host='0.0.0.0', port=PORT)
-                   
