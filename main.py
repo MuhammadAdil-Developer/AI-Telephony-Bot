@@ -179,7 +179,8 @@ async def chat_completion(messages, twilio_ws, stream_sid, model='gpt-4'):
 if __name__ == '__main__':
     ngrok.set_auth_token(os.environ['NGROK_AUTH_TOKEN'])
     public_url = ngrok.connect(str(PORT), bind_tls=True).public_url
-    number = twilio_client.incoming_phone_numbers.list()[0]
+    desired_phone_number_sid = 'PN2f27e64f041c6f2f80a840ed608fbbfb'
+    number = twilio_client.incoming_phone_numbers(sid=desired_phone_number_sid).fetch()
     number.update(voice_url=public_url + '/call')
     print(f'Waiting for calls on {number.phone_number}')
     uvicorn.run(app, host='0.0.0.0', port=PORT)
